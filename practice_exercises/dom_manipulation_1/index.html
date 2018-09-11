@@ -1,0 +1,86 @@
+<!DOCTYPE = html>
+<html>
+  <head>
+    <title>DOM Manipulation Exercise</title>
+  </head>
+
+  <!-- The DOM -->
+  <body>
+    <h1>TEST PAGE</h1>
+    <div id="container"></div>
+
+    <!-- EVENTS
+    method 1,  function attribute attached to HTML element tag -->
+    <button onclick="alert('Hello world method 1')">Click Me</button>
+
+    <!-- method 2, select an HTML element using querySelector and then call a function on it, in the JavaScript
+    -->
+    <button id="btn">Click Me</button>
+
+    <!-- method 3 -->
+    <button id="btn_1">Click Me</button>
+
+    <script>
+
+
+    /* SOME DOM *METHODS* ILLUSTRATED
+
+      A querySelector, returns reference to first match of selector
+      const container = document.querySelector('#container');
+
+      A createElement, creates a new element of tag type
+      It won't put the created element to the DOM
+      You have the opportunity to manipulate the element before
+      adding it to the DOM using appendChild(); */
+      const content = document.createElement('div');
+      content.classList.add('content');
+      content.textContent = "This is the glorious text-content!";
+      container.appendChild(content);
+
+      const para = document.createElement('p');
+      para.classList.add('para');
+      para.textContent = "Hey I'm red!";
+      para.setAttribute('style', 'color: red');
+      container.appendChild(para);
+
+      const h3 = document.createElement('h3');
+      h3.textContent = "I'm a blue h3!";
+      h3.setAttribute('style', 'color: blue');
+      container.appendChild(h3);
+
+      const div = document.createElement('div');
+      const h1 = document.createElement('h1');
+      h1.textContent = "I'm in a div";
+      div.appendChild(h1);
+      const para_2 = document.createElement('p')
+      para_2.textContent = "ME TOO!";
+      div.appendChild(para_2);
+      container.appendChild(div);
+
+
+      /* method 2 for EVENTS */
+
+      var btn = document.querySelector('#btn');
+      btn.onclick = () => alert("Hello World method 2");
+
+      /* advanced stuff
+      btn.addEventListener('click', function(e){
+      console.log(e.target)
+      })
+
+      btn.addEventListener('click', function(e){
+      e.target.style.background = 'blue'
+    }) */
+
+      /* method 3 for EVENTS */
+      var btn1 = document.querySelector('#btn_1');
+      btn1.addEventListener('click', () => alert("Hello World method 3"))
+
+
+
+
+    </script>
+
+  </body>
+
+</html>
