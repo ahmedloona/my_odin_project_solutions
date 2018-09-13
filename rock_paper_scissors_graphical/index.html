@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Rock Paper Scissors</title>
+</head>
+<body>
+  <script>
+    function computerPlay(moves) {
+      let randomNum = Math.floor(Math.random() * moves.length);
+      return moves[randomNum];
+    }
+
+    function playerPlay(moves) {
+      let entry;
+      do {
+        entry = prompt("Type in your selection [rock, paper, or scissors]");
+      } while(!moves.includes(entry.toLowerCase()));
+      return entry.toLowerCase();
+    }
+
+    function playRound(playerSelection, computerSelection) {
+      let result = "";
+      selections = `${playerSelection} ${computerSelection}`
+      switch(selections) {
+        case "rock rock":
+          result = "Tie! Both selected Rock!";
+        break;
+        case "rock paper":
+          result = "You Lose! Paper beats Rock!";
+        break;
+        case "rock scissors":
+          result = "You Win! Rock beats Scissors!";
+        break;
+        case "paper rock":
+          result = "You Win! Paper beats Rock!";
+        break;
+        case "paper paper":
+          result = "Tie! Both selected paper!";
+        break;
+        case "paper scissors":
+          result = "You Lose! Scissors beats Paper!";
+        break;
+        case "scissors rock":
+          result = "You Lose! Rock beats Scissors!";
+        break;
+        case "scissors paper":
+          result = "You Win! Scissors beats Paper!";
+        break;
+        case "scissors scissors":
+          result = "Tie! Both selected Scissors!";
+        break;
+      }
+      return result;
+    }
+
+    function game(rounds, moves){
+      let playerScore = 0;
+      let computerScore = 0;
+      for(let i = 1; i <= rounds; i++) {
+        const playerSelection = playerPlay(moves);
+        const computerSelection = computerPlay(moves);
+        let result = playRound(playerSelection, computerSelection);
+        switch(true) {
+          case result.includes("You Win"):
+            playerScore++;
+          break;
+          case result.includes("You Lose"):
+            computerScore++;
+          break;
+        }
+        console.log(`Round: ${i}
+                     You selected: ${playerSelection}
+                     Computer selected: ${computerSelection}
+                     ${result} Score: You ${playerScore} Comp ${computerScore}`);
+      }
+      (playerScore > computerScore) ? console.log("You Won the Game!") :
+      (playerScore < computerScore) ? console.log("You Los the Game!") :
+      console.log("It's a Tie!");
+    }
+
+    const rounds = 5;
+    const moves = ['rock', 'paper', 'scissors'];
+    game(rounds, moves);
+  </script>
+</body>
+</html>
